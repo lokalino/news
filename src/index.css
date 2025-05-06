@@ -1,0 +1,58 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  color: #000;
+  padding: 1rem;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.container {
+  max-width: 700px;
+  margin: auto;
+}
+
+.news-item {
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+button {
+  margin-top: 0.5rem;
+  margin-right: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:focus, h1:focus, h2:focus, p:focus {
+  outline: 2px solid #000;
+  outline-offset: 2px;
+}
+
+a {
+  display: block;
+  margin-top: 0.5rem;
+}
+
+/* Dark mode styles */
+body.dark {
+  background-color: #121212;
+  color: #eee;
+}
+
+body.dark .news-item {
+  background-color: #1e1e1e;
+  color: #ddd;
+}
+
+body.dark button {
+  background-color: #444;
+  color: #fff;
+}

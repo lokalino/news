@@ -1,0 +1,110 @@
+body {
+    font-family: system-ui, sans-serif;
+    background-color: #f4f4f4;
+    color: #000;
+    margin: 0;
+    padding: 0;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+  
+  .toolbar {
+    margin-bottom: 2rem;
+  }
+  
+  .controls {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  
+  .toggle-theme {
+    padding: 0.5rem 1rem;
+    background-color: #007BFF;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .toggle-theme:hover {
+    background-color: #0056b3;
+  }
+  
+  .news-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .news-item {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  }
+  
+  .news-item h2 {
+    margin-top: 0;
+  }
+  
+  button {
+    margin-top: 0.5rem;
+    margin-right: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    font-size: 1rem;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  button:focus, h1:focus, h2:focus, p:focus {
+    outline: 2px solid #000;
+    outline-offset: 2px;
+  }
+  
+  a {
+    display: inline-block;
+    margin-top: 0.5rem;
+    text-decoration: underline;
+    color: #333;
+  }
+  
+  /* DARK MODE */
+  
+  .container.dark {
+    background-color: #121212;
+    color: #eee;
+  }
+  
+  .container.dark .news-item {
+    background-color: #1e1e1e;
+    color: #ddd;
+  }
+  
+  .container.dark .toggle-theme,
+  .container.dark button {
+    background-color: #444;
+    color: #fff;
+  }
+  
+  .container.dark .toggle-theme:hover,
+  .container.dark button:hover {
+    background-color: #666;
+  }
+  
