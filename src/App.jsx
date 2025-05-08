@@ -5,10 +5,34 @@ import NewsItem from './components/NewsItem';
 const App = () => {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [darkMode, setDarkMode] = useState(false);
-  const [fontSize, setFontSize] = useState(1.2);
-  const [language, setLanguage] = useState('en');
 
+  // Učitavanje podešavanja iz localStorage
+  const [darkMode, setDarkMode] = useState(() => {
+    return localStorage.getItem('darkMode') === 'true';
+  });
+
+  const [fontSize, setFontSize] = useState(() => {
+    return parseFloat(localStorage.getItem('fontSize')) || 1.2;
+  });
+
+  const [language, setLanguage] = useState(() => {
+    return localStorage.getItem('language') || 'en';
+  });
+
+  // Sačuvaj u localStorage svaki put kad se podešavanja promene
+  useEffect(() => {
+    localStorage.setItem('darkMode', darkMode);
+  }, [darkMode]);
+
+  useEffect(() => {
+    localStorage.setItem('fontSize', fontSize);
+  }, [fontSize]);
+
+  useEffect(() => {
+    localStorage.setItem('language', language);
+  }, [language]);
+
+  // Dohvati vesti iz API-ja kad se promeni jezik
   useEffect(() => {
     setLoading(true);
     axios.get('https://newsdata.io/api/1/news', {
@@ -50,7 +74,7 @@ const App = () => {
               max="2"
               step="0.1"
               value={fontSize}
-              onChange={(e) => setFontSize(e.target.value)}
+              onChange={(e) => setFontSize(parseFloat(e.target.value))}
             />
           </label>
 

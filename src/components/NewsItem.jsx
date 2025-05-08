@@ -1,6 +1,6 @@
 import React from 'react';
 
-const NewsItem = ({ article, language }) => {
+const NewsItem = ({ article, language, onSave, isSaved }) => {
   const handleReadAloud = () => {
     speechSynthesis.cancel();
 
@@ -30,8 +30,18 @@ const NewsItem = ({ article, language }) => {
       <div style={{ marginTop: '0.5rem' }}>
         <button onClick={handleReadAloud} aria-label="Read article aloud">🔊 Read Aloud</button>
         <button onClick={handleStopReading} aria-label="Stop reading" style={{ marginLeft: '0.5rem' }}>⏹ Stop</button>
+        {!isSaved && onSave && (
+          <button onClick={() => onSave(article)} aria-label="Save for later" style={{ marginLeft: '0.5rem' }}>
+            💾 Save
+          </button>
+        )}
       </div>
-      <a href={article.link} target="_blank" rel="noopener noreferrer" style={{ display: 'block', marginTop: '0.5rem' }}>
+      <a
+        href={article.link}
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{ display: 'block', marginTop: '0.5rem' }}
+      >
         Read More
       </a>
     </li>
