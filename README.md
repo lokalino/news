@@ -1,15 +1,64 @@
-# React + Vite
+# Accessible News Reader
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a small personal project — an accessible news reader app built with React and Vite.  
+The idea is to make it easier for everyone, including visually impaired users, to read (or listen to) news online.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+##  What it currently does
 
-## Expanding the ESLint configuration
+- Fetches news from NewsData.io API  
+- Lets users pick language (English, Serbian, German)  
+- Can read articles aloud (Text-to-Speech)  
+- Dark & light mode  
+- Font size slider (for better readability)  
+- "Save for later" feature using LocalStorage  
+- Works offline as a PWA (Progressive Web App)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-## 📄 License
+---
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+##  A quick note
+
+This is just the beginning.  
+I probably bit off more than I can chew 😅 — but I'm learning as I go, fixing bugs, and improving things step by step.  
+If you have any ideas, suggestions, or want to help — I’d really appreciate it! 😄
+
+---
+
+## ⚙️ Tech Stack
+
+- React (Vite)
+- Axios
+- Web Speech API
+- LocalStorage
+- WCAG principles (as much as I could apply)
+- vite-plugin-pwa
+
+---
+
+##  How to run locally
+
+```bash
+npm install
+npm run dev
+```
+
+To test PWA build:
+
+```bash
+npm run build
+npm run preview
+```
+
+---
+
+## What's next?
+
+- Nicer UI (still quite basic)
+- Proper i18n support (interface translation)
+- Topic filters (e.g. tech, politics, etc.)
+- Notifications & more accessibility features
+
+---
+
+If this idea resonates with you — feel free to fork it, play with it, or even contribute!
