@@ -1,49 +1,50 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
-const NewsItem = ({ article, language, onSave, isSaved }) => {
-  const handleReadAloud = () => {
+const NewsItem = ({ article, language, showImages, onSave }) => {
+  const { t } = useTranslation();
+  const [zoomed, setZoomed] = useState(false);
+
+  const speak = () => {
+    const utterance = new SpeechSynthesisUtterance(`${article.title}. ${article.description}`);
+    utterance.lang = language || 'en';
     speechSynthesis.cancel();
-
-    const utterance = new SpeechSynthesisUtterance(
-      `${article.title || ''}. ${article.description || article.content || ''}`
-    );
-
-    const langMap = {
-      en: 'en-US',
-      sr: 'sr-RS',
-      de: 'de-DE'
-    };
-
-    utterance.lang = langMap[language] || 'en-US';
-
     speechSynthesis.speak(utterance);
   };
 
-  const handleStopReading = () => {
-    speechSynthesis.cancel();
-  };
+  const pause = () => speechSynthesis.pause();
+  const resume = () => speechSynthesis.resume();
+  const stop = () => speechSynthesis.cancel();
+  const toggleZoom = () => setZoomed(!zoomed);
 
   return (
     <li className="news-item">
-      <h2 tabIndex="0">{article.title}</h2>
-      <p tabIndex="0">{article.description || article.content}</p>
-      <div style={{ marginTop: '0.5rem' }}>
-        <button onClick={handleReadAloud} aria-label="Read article aloud">🔊 Read Aloud</button>
-        <button onClick={handleStopReading} aria-label="Stop reading" style={{ marginLeft: '0.5rem' }}>⏹ Stop</button>
-        {!isSaved && onSave && (
-          <button onClick={() => onSave(article)} aria-label="Save for later" style={{ marginLeft: '0.5rem' }}>
-            💾 Save
-          </button>
-        )}
+      <h2>{article.title}</h2>
+
+      {showImages && article.image_url && (
+        <img
+          src={article.image_url}
+          alt=""
+          onClick={toggleZoom}
+          className={zoomed ? 'zoomed' : ''}
+        />
+      )}
+
+      <p>{article.description}</p>
+
+      {article.source_id && (
+        <p style={{ fontSize: '0.9rem', color: '#666' }}>
+          📰 {article.source_id}
+        </p>
+      )}
+
+      <div className="news-actions">
+        <button onClick={speak}>🔊 {t('read')}</button>
+        <button onClick={pause}>⏸ Pauziraj</button>
+        <button onClick={resume}>▶️ Nastavi</button>
+        <button onClick={stop}>⏹ Zaustavi</button>
+        <button onClick={() => onSave(article)}>💾 {t('save')}</button>
       </div>
-      <a
-        href={article.link}
-        target="_blank"
-        rel="noopener noreferrer"
-        style={{ display: 'block', marginTop: '0.5rem' }}
-      >
-        Read More
-      </a>
     </li>
   );
 };
