@@ -1,3 +1,4 @@
+@import "tailwindcss";
 
 * {
   margin: 0;
@@ -6,7 +7,7 @@
 }
 
 body {
-  font-family: 'Segoe UI', 'Open Sans', sans-serif;
+  font-family: "Segoe UI", "Open Sans", sans-serif;
   background-color: #f9f9f9;
   color: #222;
   line-height: 1.6;
@@ -51,7 +52,6 @@ input[type="range"] {
   border: 1px solid #ccc;
 }
 
-
 .news-list {
   list-style: none;
   padding: 0;
@@ -63,7 +63,7 @@ input[type="range"] {
   border-radius: 10px;
   padding: 1.5rem;
   margin-bottom: 1.5rem;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   transition: transform 0.2s;
 }
 
@@ -107,7 +107,6 @@ input[type="range"] {
   text-decoration: underline;
 }
 
-
 .news-item img {
   max-width: 100%;
   border-radius: 6px;
@@ -120,7 +119,12 @@ input[type="range"] {
 }
 
 .container.dark .news-item {
-  background-color: rgba(40, 40, 40, 0.95); /* malo transparentno, ali čitljivo */
+  background-color: rgba(
+    40,
+    40,
+    40,
+    0.95
+  ); /* malo transparentno, ali čitljivo */
   color: #f0f0f0;
 }
 
