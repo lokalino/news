@@ -1,5 +1,57 @@
 @import "tailwindcss";
 
+/* ============== IMPORTANT =========== */
+/* in tailwind v4, configs (custom variables) live directly in the main css file. usually there is only one css file, since all styling lives inside localised JSX. before version 4, tailwind used special config file for custom variables but with v4 thats no longer the case. this warning might save you frustration on why are your tailwind utility classes not working */
+
+/* layer is used similar to vanilla css class, its meant to be a reusable styling, for example a button. feature is obsolete with tailwind since using it you are basically writing just vanilla css classes and assigning them to elements, but useful sometimes */
+@layer components {
+  .btn {
+    @apply px-4 py-2 bg-blue-500 text-white rounded;
+  }
+}
+
+/* theme is where all your custom variables are. refer to documentation for details. keep in mind, prefixes MUST have certain key words like color must be named "color" then after is your variable name that can be whatever you want but prefix "color" defines what is it for */
+
+@theme {
+  /*colors*/
+  --color-primary: #3461e9;
+  --color-primaryHover: #2354e7;
+
+  --color-secondary: #ffcb47;
+  --color-secondaryHover: #f5af00;
+
+  --color-darktext: #474747;
+  /* for test. toggle between the two to check for concistencies across app */
+  /* --color-darktext: #ff0000;  */
+  --color-lighttext: #d4f5f5;
+  /* for test. toggle between the two to check for concistencies across app */
+  /* --color-lighttext: #FBFF0A;  */
+
+  /* --color-customcolorone: #D89D6A; */ /* etc */
+
+  /*custom fontsize  */
+  --text-sizeprimary: 2rem;
+  --text-sizesecondary: 1.5rem;
+
+  /* font same name classes for the purpose of commenting out a set of them and checkoing for consistency testing across app  */
+  --font-primary: "Comic Sans MS", sans-serif;
+  --font-secondary: Poppins, sans-serif;
+  /* fonts for testing */
+  /* --font-primary: Comic Sans MS, serif; */
+  /* --font-secondary: Papyrus, serif; */
+
+  /* custom shadow  */
+  /* --shadow-custom: 0 0 10px rgba(0, 0, 0, 1); */
+
+  /*  custom breakpoints, usually xs is needed */
+  --breakpoint-xs: 480px;
+
+  /*custom border radius*/
+  --radius-custom: 8px;
+}
+
+/* ///////////// end of tailwind variables section */
+
 * {
   margin: 0;
   padding: 0;
