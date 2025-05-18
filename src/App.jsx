@@ -14,56 +14,24 @@ const App = () => {
   });
 
   const [loading, setLoading] = useState(true);
-  const [darkMode, setDarkMode] = useState(
-    () => localStorage.getItem("darkMode") === "true"
-  );
-  const [fontSize, setFontSize] = useState(
-    () => parseFloat(localStorage.getItem("fontSize")) || 1.2
-  );
-  const [fontFamily, setFontFamily] = useState(
-    () => localStorage.getItem("fontFamily") || "sans-serif"
-  );
-  const [language, setLanguage] = useState(
-    () => localStorage.getItem("language") || "en"
-  );
-  const [category, setCategory] = useState(
-    () => localStorage.getItem("category") || "top"
-  );
-  const [layoutWidth, setLayoutWidth] = useState(
-    () => localStorage.getItem("layoutWidth") || "normal"
-  );
-  const [showImages, setShowImages] = useState(
-    () => localStorage.getItem("showImages") !== "false"
-  );
+  const [darkMode, setDarkMode] = useState(() => localStorage.getItem("darkMode") === "true");
+  const [fontSize, setFontSize] = useState(() => parseFloat(localStorage.getItem("fontSize")) || 1.2);
+  const [fontFamily, setFontFamily] = useState(() => localStorage.getItem("fontFamily") || "sans-serif");
+  const [language, setLanguage] = useState(() => localStorage.getItem("language") || "en");
+  const [category, setCategory] = useState(() => localStorage.getItem("category") || "top");
+  const [layoutWidth, setLayoutWidth] = useState(() => localStorage.getItem("layoutWidth") || "normal");
+  const [showImages, setShowImages] = useState(() => localStorage.getItem("showImages") !== "false");
 
-  useEffect(() => {
-    localStorage.setItem("darkMode", darkMode);
-  }, [darkMode]);
-
-  useEffect(() => {
-    localStorage.setItem("fontSize", fontSize);
-  }, [fontSize]);
-
-  useEffect(() => {
-    localStorage.setItem("fontFamily", fontFamily);
-  }, [fontFamily]);
-
+  useEffect(() => localStorage.setItem("darkMode", darkMode), [darkMode]);
+  useEffect(() => localStorage.setItem("fontSize", fontSize), [fontSize]);
+  useEffect(() => localStorage.setItem("fontFamily", fontFamily), [fontFamily]);
   useEffect(() => {
     localStorage.setItem("language", language);
     i18n.changeLanguage(language);
   }, [language, i18n]);
-
-  useEffect(() => {
-    localStorage.setItem("category", category);
-  }, [category]);
-
-  useEffect(() => {
-    localStorage.setItem("layoutWidth", layoutWidth);
-  }, [layoutWidth]);
-
-  useEffect(() => {
-    localStorage.setItem("showImages", showImages);
-  }, [showImages]);
+  useEffect(() => localStorage.setItem("category", category), [category]);
+  useEffect(() => localStorage.setItem("layoutWidth", layoutWidth), [layoutWidth]);
+  useEffect(() => localStorage.setItem("showImages", showImages), [showImages]);
 
   useEffect(() => {
     const fetchArticles = async () => {
@@ -84,7 +52,6 @@ const App = () => {
         setLoading(false);
       }
     };
-
     fetchArticles();
   }, [language, category]);
 
@@ -105,16 +72,13 @@ const App = () => {
     >
       <header className="toolbar">
         <h1 tabIndex="0">{t("welcome")}</h1>
-        <h1 className="bg-red-400 animate-bounce font-extrabold italic font-mono">
-          TEST{" "}
-        </h1>
         <div className="controls">
           <button onClick={() => setDarkMode(!darkMode)}>
-            {darkMode ? "🌞 Light Mode" : "🌙 Dark Mode"}
+            {darkMode ? t("lightMode") : t("darkMode")}
           </button>
 
           <label>
-            🔠 Font:
+            {t("fontSize")}:
             <input
               type="range"
               min="1"
@@ -126,11 +90,8 @@ const App = () => {
           </label>
 
           <label>
-            🖋 Pismo:
-            <select
-              value={fontFamily}
-              onChange={(e) => setFontFamily(e.target.value)}
-            >
+            {t("fontFamily")}:
+            <select value={fontFamily} onChange={(e) => setFontFamily(e.target.value)}>
               <option value="sans-serif">Sans-serif</option>
               <option value="serif">Serif</option>
               <option value="monospace">Monospace</option>
@@ -138,11 +99,8 @@ const App = () => {
           </label>
 
           <label>
-            🌍 {t("language")}:
-            <select
-              value={language}
-              onChange={(e) => setLanguage(e.target.value)}
-            >
+            {t("language")}:
+            <select value={language} onChange={(e) => setLanguage(e.target.value)}>
               <option value="en">English</option>
               <option value="sr">Srpski</option>
               <option value="de">Deutsch</option>
@@ -150,40 +108,30 @@ const App = () => {
           </label>
 
           <label>
-            📰 Tema:
-            <select
-              value={category}
-              onChange={(e) => setCategory(e.target.value)}
-            >
-              <option value="top">Najnovije</option>
-              <option value="business">Biznis</option>
-              <option value="technology">Tehnologija</option>
-              <option value="sports">Sport</option>
-              <option value="entertainment">Zabava</option>
-              <option value="health">Zdravlje</option>
-              <option value="science">Nauka</option>
+            {t("category")}:
+            <select value={category} onChange={(e) => setCategory(e.target.value)}>
+              <option value="top">{t("latest")}</option>
+              <option value="business">{t("business")}</option>
+              <option value="technology">{t("technology")}</option>
+              <option value="sports">{t("sports")}</option>
+              <option value="entertainment">{t("entertainment")}</option>
+              <option value="health">{t("health")}</option>
+              <option value="science">{t("science")}</option>
             </select>
           </label>
 
           <label>
-            📏 Širina:
-            <select
-              value={layoutWidth}
-              onChange={(e) => setLayoutWidth(e.target.value)}
-            >
-              <option value="narrow">Usko</option>
-              <option value="normal">Normalno</option>
-              <option value="wide">Široko</option>
+            {t("layoutWidth")}:
+            <select value={layoutWidth} onChange={(e) => setLayoutWidth(e.target.value)}>
+              <option value="narrow">{t("narrow")}</option>
+              <option value="normal">{t("normal")}</option>
+              <option value="wide">{t("wide")}</option>
             </select>
           </label>
 
           <label>
-            🖼 Prikaži slike:
-            <input
-              type="checkbox"
-              checked={showImages}
-              onChange={() => setShowImages(!showImages)}
-            />
+            {t("showImages")}:
+            <input type="checkbox" checked={showImages} onChange={() => setShowImages(!showImages)} />
           </label>
         </div>
       </header>
@@ -206,7 +154,7 @@ const App = () => {
 
           {savedArticles.length > 0 && (
             <>
-              <h2>💾 Sačuvane vesti</h2>
+              <h2>{t("savedArticles")}</h2>
               <ul className="news-list">
                 {savedArticles.map((article, index) => (
                   <NewsItem
@@ -214,7 +162,7 @@ const App = () => {
                     article={article}
                     language={language}
                     showImages={showImages}
-                    onSave={() => {}} // disabled
+                    onSave={() => {}}
                   />
                 ))}
               </ul>
